@@ -298,6 +298,134 @@ func (m *QueryAllContactResponse) GetPagination() *query.PageResponse {
 	return nil
 }
 
+type QueryListContactFilterRequest struct {
+	Name       string             `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Phone      string             `protobuf:"bytes,2,opt,name=phone,proto3" json:"phone,omitempty"`
+	Email      string             `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	Address    string             `protobuf:"bytes,4,opt,name=address,proto3" json:"address,omitempty"`
+	Pagination *query.PageRequest `protobuf:"bytes,5,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListContactFilterRequest) Reset()         { *m = QueryListContactFilterRequest{} }
+func (m *QueryListContactFilterRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryListContactFilterRequest) ProtoMessage()    {}
+func (*QueryListContactFilterRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ecca2fdd3a008241, []int{6}
+}
+func (m *QueryListContactFilterRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListContactFilterRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListContactFilterRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListContactFilterRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListContactFilterRequest.Merge(m, src)
+}
+func (m *QueryListContactFilterRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListContactFilterRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListContactFilterRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListContactFilterRequest proto.InternalMessageInfo
+
+func (m *QueryListContactFilterRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *QueryListContactFilterRequest) GetPhone() string {
+	if m != nil {
+		return m.Phone
+	}
+	return ""
+}
+
+func (m *QueryListContactFilterRequest) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *QueryListContactFilterRequest) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+func (m *QueryListContactFilterRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryListContactFilterResponse struct {
+	Contact    []Contact           `protobuf:"bytes,1,rep,name=contact,proto3" json:"contact"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListContactFilterResponse) Reset()         { *m = QueryListContactFilterResponse{} }
+func (m *QueryListContactFilterResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryListContactFilterResponse) ProtoMessage()    {}
+func (*QueryListContactFilterResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ecca2fdd3a008241, []int{7}
+}
+func (m *QueryListContactFilterResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListContactFilterResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListContactFilterResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListContactFilterResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListContactFilterResponse.Merge(m, src)
+}
+func (m *QueryListContactFilterResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListContactFilterResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListContactFilterResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListContactFilterResponse proto.InternalMessageInfo
+
+func (m *QueryListContactFilterResponse) GetContact() []Contact {
+	if m != nil {
+		return m.Contact
+	}
+	return nil
+}
+
+func (m *QueryListContactFilterResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "crude.addressbook.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "crude.addressbook.QueryParamsResponse")
@@ -305,43 +433,54 @@ func init() {
 	proto.RegisterType((*QueryGetContactResponse)(nil), "crude.addressbook.QueryGetContactResponse")
 	proto.RegisterType((*QueryAllContactRequest)(nil), "crude.addressbook.QueryAllContactRequest")
 	proto.RegisterType((*QueryAllContactResponse)(nil), "crude.addressbook.QueryAllContactResponse")
+	proto.RegisterType((*QueryListContactFilterRequest)(nil), "crude.addressbook.QueryListContactFilterRequest")
+	proto.RegisterType((*QueryListContactFilterResponse)(nil), "crude.addressbook.QueryListContactFilterResponse")
 }
 
 func init() { proto.RegisterFile("crude/addressbook/query.proto", fileDescriptor_ecca2fdd3a008241) }
 
 var fileDescriptor_ecca2fdd3a008241 = []byte{
-	// 494 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0xb1, 0x6b, 0x14, 0x41,
-	0x14, 0xc6, 0x6f, 0x2e, 0xf1, 0xc4, 0x11, 0x84, 0x8c, 0x41, 0xbd, 0x35, 0xee, 0x99, 0x01, 0x93,
-	0x78, 0xc5, 0x0c, 0x49, 0x3a, 0xb1, 0xc9, 0x09, 0xa6, 0x8d, 0x2b, 0x36, 0x56, 0xce, 0xdd, 0x0e,
-	0xcb, 0xe2, 0xde, 0xce, 0x66, 0x67, 0x4e, 0x8c, 0x62, 0x63, 0x23, 0x76, 0x82, 0x95, 0x8d, 0xb5,
-	0xa5, 0x7f, 0x46, 0xca, 0x80, 0x8d, 0x95, 0xc8, 0x9d, 0xe0, 0xbf, 0x21, 0x3b, 0xf3, 0xa2, 0x7b,
-	0xce, 0x2d, 0xd1, 0x66, 0x59, 0xe6, 0x7d, 0xdf, 0x7b, 0x3f, 0xe6, 0x7b, 0x83, 0x6f, 0x8c, 0xca,
-	0x49, 0x2c, 0xb9, 0x88, 0xe3, 0x52, 0x6a, 0x3d, 0x54, 0xea, 0x29, 0x3f, 0x9c, 0xc8, 0xf2, 0x88,
-	0x15, 0xa5, 0x32, 0x8a, 0xac, 0xd8, 0x32, 0xab, 0x95, 0x83, 0x15, 0x31, 0x4e, 0x73, 0xc5, 0xed,
-	0xd7, 0xa9, 0x82, 0xd5, 0x44, 0x25, 0xca, 0xfe, 0xf2, 0xea, 0x0f, 0x4e, 0xd7, 0x12, 0xa5, 0x92,
-	0x4c, 0x72, 0x51, 0xa4, 0x5c, 0xe4, 0xb9, 0x32, 0xc2, 0xa4, 0x2a, 0xd7, 0x50, 0xed, 0x8f, 0x94,
-	0x1e, 0x2b, 0xcd, 0x87, 0x42, 0x4b, 0x37, 0x92, 0x3f, 0xdb, 0x1e, 0x4a, 0x23, 0xb6, 0x79, 0x21,
-	0x92, 0x34, 0xb7, 0x62, 0xd0, 0x86, 0x3e, 0x64, 0x21, 0x4a, 0x31, 0x3e, 0xed, 0xd5, 0xf3, 0xeb,
-	0x23, 0x95, 0x1b, 0x31, 0x32, 0x4e, 0x40, 0x57, 0x31, 0x79, 0x50, 0x8d, 0x38, 0xb0, 0xae, 0x48,
-	0x1e, 0x4e, 0xa4, 0x36, 0xf4, 0x21, 0xbe, 0x3c, 0x77, 0xaa, 0x0b, 0x95, 0x6b, 0x49, 0xee, 0xe2,
-	0x8e, 0xeb, 0x7e, 0x0d, 0xdd, 0x44, 0x5b, 0x17, 0x77, 0xba, 0xcc, 0xbb, 0x04, 0xe6, 0x2c, 0x83,
-	0x0b, 0xc7, 0xdf, 0x7a, 0xad, 0x4f, 0x3f, 0x3f, 0xf7, 0x51, 0x04, 0x1e, 0xba, 0x85, 0xaf, 0xd8,
-	0xa6, 0xfb, 0xd2, 0xdc, 0x73, 0x0c, 0x30, 0x8e, 0x5c, 0xc2, 0xed, 0x34, 0xb6, 0x3d, 0x97, 0xa3,
-	0x76, 0x1a, 0xd3, 0x47, 0xf8, 0xaa, 0xa7, 0x04, 0x84, 0x3b, 0xf8, 0x3c, 0x1c, 0x01, 0x43, 0xb0,
-	0x80, 0x01, 0x14, 0x83, 0xe5, 0x0a, 0x22, 0x3a, 0x35, 0xd0, 0x27, 0x00, 0xb0, 0x97, 0x65, 0x7f,
-	0x01, 0xdc, 0xc7, 0xf8, 0xcf, 0xd5, 0x42, 0xe3, 0x0d, 0xe6, 0x72, 0x60, 0x55, 0x0e, 0xcc, 0x45,
-	0x0f, 0x39, 0xb0, 0x03, 0x91, 0x48, 0xf0, 0x46, 0x35, 0x27, 0xfd, 0x88, 0x80, 0xbc, 0x3e, 0x62,
-	0x11, 0xf9, 0xd2, 0x7f, 0x91, 0x93, 0xfd, 0x39, 0xbe, 0xb6, 0xe5, 0xdb, 0x3c, 0x93, 0xcf, 0x0d,
-	0xae, 0x03, 0xee, 0x7c, 0x58, 0xc2, 0xe7, 0x2c, 0x20, 0x79, 0x81, 0x3b, 0x2e, 0x2a, 0x72, 0x6b,
-	0x01, 0x87, 0xbf, 0x13, 0xc1, 0xc6, 0x59, 0x32, 0x37, 0x8e, 0xae, 0xbf, 0xfe, 0xf2, 0xe3, 0x7d,
-	0xfb, 0x3a, 0xe9, 0xf2, 0xa6, 0xdd, 0x24, 0x6f, 0xd1, 0xef, 0xbb, 0x20, 0xb7, 0x9b, 0xda, 0x7a,
-	0x6b, 0x12, 0xf4, 0xff, 0x45, 0x0a, 0x14, 0x9b, 0x96, 0x62, 0x9d, 0xf4, 0x78, 0xe3, 0x0b, 0xe0,
-	0x2f, 0xd3, 0xf8, 0x15, 0x79, 0x83, 0x30, 0x06, 0xf3, 0x5e, 0x96, 0x35, 0xe3, 0x78, 0x4b, 0xd3,
-	0x8c, 0xe3, 0x87, 0x4f, 0xa9, 0xc5, 0x59, 0x23, 0x41, 0x33, 0xce, 0x60, 0xf7, 0x78, 0x1a, 0xa2,
-	0x93, 0x69, 0x88, 0xbe, 0x4f, 0x43, 0xf4, 0x6e, 0x16, 0xb6, 0x4e, 0x66, 0x61, 0xeb, 0xeb, 0x2c,
-	0x6c, 0x3d, 0xee, 0x3a, 0xd3, 0xf3, 0x39, 0x9b, 0x39, 0x2a, 0xa4, 0x1e, 0x76, 0xec, 0x33, 0xde,
-	0xfd, 0x15, 0x00, 0x00, 0xff, 0xff, 0x43, 0x7e, 0xdb, 0x38, 0xae, 0x04, 0x00, 0x00,
+	// 637 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x94, 0x41, 0x6b, 0x13, 0x41,
+	0x14, 0xc7, 0x33, 0x69, 0x92, 0x92, 0x11, 0x84, 0x8c, 0x41, 0x93, 0xb5, 0xdd, 0xd8, 0x05, 0xdb,
+	0x9a, 0xc3, 0x8e, 0x69, 0x6f, 0xe2, 0xa5, 0x11, 0x1a, 0x04, 0xc1, 0xba, 0xe2, 0xc5, 0x4b, 0x9d,
+	0xec, 0x8e, 0xeb, 0xe2, 0x66, 0x67, 0xbb, 0xb3, 0x11, 0x6b, 0xc8, 0xc5, 0x8b, 0x78, 0x13, 0xbc,
+	0x7b, 0x13, 0x3c, 0xfa, 0x15, 0xbc, 0xd5, 0x5b, 0xc1, 0x8b, 0x27, 0x91, 0x44, 0xf1, 0x6b, 0xc8,
+	0xce, 0x4c, 0x6c, 0xd2, 0xcd, 0x52, 0x23, 0x5e, 0xc2, 0xcc, 0x9b, 0xf7, 0xde, 0xff, 0x97, 0xff,
+	0xec, 0x1b, 0xb8, 0x6a, 0x47, 0x7d, 0x87, 0x62, 0xe2, 0x38, 0x11, 0xe5, 0xbc, 0xcb, 0xd8, 0x53,
+	0x7c, 0xd0, 0xa7, 0xd1, 0xa1, 0x19, 0x46, 0x2c, 0x66, 0xa8, 0x22, 0x8e, 0xcd, 0xa9, 0x63, 0xad,
+	0x42, 0x7a, 0x5e, 0xc0, 0xb0, 0xf8, 0x95, 0x59, 0x5a, 0xd5, 0x65, 0x2e, 0x13, 0x4b, 0x9c, 0xac,
+	0x54, 0x74, 0xc5, 0x65, 0xcc, 0xf5, 0x29, 0x26, 0xa1, 0x87, 0x49, 0x10, 0xb0, 0x98, 0xc4, 0x1e,
+	0x0b, 0xb8, 0x3a, 0x6d, 0xda, 0x8c, 0xf7, 0x18, 0xc7, 0x5d, 0xc2, 0xa9, 0x94, 0xc4, 0xcf, 0x5a,
+	0x5d, 0x1a, 0x93, 0x16, 0x0e, 0x89, 0xeb, 0x05, 0x22, 0x59, 0xe5, 0xea, 0x69, 0xc8, 0x90, 0x44,
+	0xa4, 0x37, 0xe9, 0xd5, 0x48, 0x9f, 0xdb, 0x2c, 0x88, 0x89, 0x1d, 0xcb, 0x04, 0xa3, 0x0a, 0xd1,
+	0xbd, 0x44, 0x62, 0x4f, 0x54, 0x59, 0xf4, 0xa0, 0x4f, 0x79, 0x6c, 0xdc, 0x87, 0x17, 0x66, 0xa2,
+	0x3c, 0x64, 0x01, 0xa7, 0xe8, 0x26, 0x2c, 0xc9, 0xee, 0x35, 0x70, 0x05, 0x6c, 0x9e, 0xdb, 0xaa,
+	0x9b, 0x29, 0x13, 0x4c, 0x59, 0xd2, 0x2e, 0x1f, 0x7d, 0x6b, 0xe4, 0x3e, 0xfc, 0xfa, 0xd8, 0x04,
+	0x96, 0xaa, 0x31, 0x36, 0xe1, 0x45, 0xd1, 0xb4, 0x43, 0xe3, 0x5b, 0x92, 0x41, 0xc9, 0xa1, 0xf3,
+	0x30, 0xef, 0x39, 0xa2, 0x67, 0xc1, 0xca, 0x7b, 0x8e, 0xf1, 0x00, 0x5e, 0x4a, 0x65, 0x2a, 0x84,
+	0x1b, 0x70, 0x59, 0x85, 0x14, 0x83, 0x36, 0x87, 0x41, 0x65, 0xb4, 0x0b, 0x09, 0x84, 0x35, 0x29,
+	0x30, 0x1e, 0x29, 0x80, 0x1d, 0xdf, 0x3f, 0x05, 0xb0, 0x0b, 0xe1, 0x89, 0xb5, 0xaa, 0xf1, 0xba,
+	0x29, 0xef, 0xc1, 0x4c, 0xee, 0xc1, 0x94, 0x57, 0xaf, 0xee, 0xc1, 0xdc, 0x23, 0x2e, 0x55, 0xb5,
+	0xd6, 0x54, 0xa5, 0xf1, 0x0e, 0x28, 0xf2, 0x69, 0x89, 0x79, 0xe4, 0x4b, 0x0b, 0x91, 0xa3, 0xce,
+	0x0c, 0x5f, 0x5e, 0xf0, 0x6d, 0x9c, 0xc9, 0x27, 0x85, 0x67, 0x00, 0x3f, 0x01, 0xb8, 0x2a, 0x00,
+	0xef, 0x78, 0x7c, 0xe2, 0xed, 0xae, 0xe7, 0xc7, 0x34, 0x9a, 0x58, 0x81, 0x60, 0x21, 0x20, 0x3d,
+	0x2a, 0x4c, 0x28, 0x5b, 0x62, 0x8d, 0xaa, 0xb0, 0x18, 0x3e, 0x61, 0x01, 0x15, 0xca, 0x65, 0x4b,
+	0x6e, 0x92, 0x28, 0xed, 0x11, 0xcf, 0xaf, 0x2d, 0xc9, 0xa8, 0xd8, 0xa0, 0x1a, 0x5c, 0x56, 0x7f,
+	0xa8, 0x56, 0x10, 0xf1, 0xc9, 0xf6, 0x94, 0xc9, 0xc5, 0x7f, 0x36, 0xf9, 0x3d, 0x80, 0x7a, 0xd6,
+	0x7f, 0x38, 0xf1, 0xda, 0x5e, 0xd4, 0x6b, 0xfb, 0x3f, 0x7b, 0xbd, 0xf5, 0xb3, 0x00, 0x8b, 0x82,
+	0x13, 0xbd, 0x80, 0x25, 0x39, 0x16, 0xe8, 0xea, 0x1c, 0x8e, 0xf4, 0xfc, 0x69, 0xeb, 0x67, 0xa5,
+	0x49, 0x39, 0x63, 0xed, 0xe5, 0x97, 0x1f, 0x6f, 0xf3, 0x97, 0x51, 0x1d, 0x67, 0xbd, 0x03, 0xe8,
+	0x35, 0xf8, 0xf3, 0xdd, 0xa1, 0x6b, 0x59, 0x6d, 0x53, 0x23, 0xa9, 0x35, 0xff, 0x26, 0x55, 0x51,
+	0x6c, 0x08, 0x8a, 0x35, 0xd4, 0xc0, 0x99, 0xaf, 0x0d, 0x1e, 0x78, 0xce, 0x10, 0xbd, 0x02, 0x10,
+	0xaa, 0xe2, 0x1d, 0xdf, 0xcf, 0xc6, 0x49, 0x0d, 0x68, 0x36, 0x4e, 0x7a, 0xd0, 0x0c, 0x43, 0xe0,
+	0xac, 0x20, 0x2d, 0x1b, 0x07, 0x7d, 0x06, 0xb0, 0x92, 0xfa, 0x7c, 0xd0, 0xf5, 0x2c, 0x95, 0xac,
+	0x69, 0xd1, 0x5a, 0x0b, 0x54, 0x28, 0xbc, 0xbb, 0x02, 0xef, 0x36, 0xea, 0xcc, 0xc1, 0xf3, 0x3d,
+	0x1e, 0xef, 0x2b, 0xc6, 0xfd, 0xc7, 0xa2, 0x0e, 0x0f, 0x92, 0x11, 0x1c, 0xe2, 0x81, 0x18, 0xba,
+	0x21, 0x1e, 0x88, 0x31, 0x1b, 0xe2, 0x81, 0xaa, 0x1b, 0xb6, 0xb7, 0x8f, 0x46, 0x3a, 0x38, 0x1e,
+	0xe9, 0xe0, 0xfb, 0x48, 0x07, 0x6f, 0xc6, 0x7a, 0xee, 0x78, 0xac, 0xe7, 0xbe, 0x8e, 0xf5, 0xdc,
+	0xc3, 0xba, 0x54, 0x78, 0x3e, 0xa3, 0x11, 0x1f, 0x86, 0x94, 0x77, 0x4b, 0xe2, 0xf9, 0xdf, 0xfe,
+	0x1d, 0x00, 0x00, 0xff, 0xff, 0xc8, 0x5c, 0xf9, 0xcf, 0xe6, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -361,6 +500,8 @@ type QueryClient interface {
 	// Queries a list of Contact items.
 	Contact(ctx context.Context, in *QueryGetContactRequest, opts ...grpc.CallOption) (*QueryGetContactResponse, error)
 	ContactAll(ctx context.Context, in *QueryAllContactRequest, opts ...grpc.CallOption) (*QueryAllContactResponse, error)
+	// Queries a list of ListContactFilter items.
+	ListContactFilter(ctx context.Context, in *QueryListContactFilterRequest, opts ...grpc.CallOption) (*QueryListContactFilterResponse, error)
 }
 
 type queryClient struct {
@@ -398,6 +539,15 @@ func (c *queryClient) ContactAll(ctx context.Context, in *QueryAllContactRequest
 	return out, nil
 }
 
+func (c *queryClient) ListContactFilter(ctx context.Context, in *QueryListContactFilterRequest, opts ...grpc.CallOption) (*QueryListContactFilterResponse, error) {
+	out := new(QueryListContactFilterResponse)
+	err := c.cc.Invoke(ctx, "/crude.addressbook.Query/ListContactFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -405,6 +555,8 @@ type QueryServer interface {
 	// Queries a list of Contact items.
 	Contact(context.Context, *QueryGetContactRequest) (*QueryGetContactResponse, error)
 	ContactAll(context.Context, *QueryAllContactRequest) (*QueryAllContactResponse, error)
+	// Queries a list of ListContactFilter items.
+	ListContactFilter(context.Context, *QueryListContactFilterRequest) (*QueryListContactFilterResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -419,6 +571,9 @@ func (*UnimplementedQueryServer) Contact(ctx context.Context, req *QueryGetConta
 }
 func (*UnimplementedQueryServer) ContactAll(ctx context.Context, req *QueryAllContactRequest) (*QueryAllContactResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ContactAll not implemented")
+}
+func (*UnimplementedQueryServer) ListContactFilter(ctx context.Context, req *QueryListContactFilterRequest) (*QueryListContactFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListContactFilter not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -479,6 +634,24 @@ func _Query_ContactAll_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ListContactFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListContactFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListContactFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/crude.addressbook.Query/ListContactFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListContactFilter(ctx, req.(*QueryListContactFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Query_serviceDesc = _Query_serviceDesc
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "crude.addressbook.Query",
@@ -495,6 +668,10 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ContactAll",
 			Handler:    _Query_ContactAll_Handler,
+		},
+		{
+			MethodName: "ListContactFilter",
+			Handler:    _Query_ListContactFilter_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -702,6 +879,118 @@ func (m *QueryAllContactResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryListContactFilterRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListContactFilterRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListContactFilterRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Address) > 0 {
+		i -= len(m.Address)
+		copy(dAtA[i:], m.Address)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Address)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Email) > 0 {
+		i -= len(m.Email)
+		copy(dAtA[i:], m.Email)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Email)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Phone) > 0 {
+		i -= len(m.Phone)
+		copy(dAtA[i:], m.Phone)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Phone)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListContactFilterResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListContactFilterResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListContactFilterResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Contact) > 0 {
+		for iNdEx := len(m.Contact) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Contact[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -770,6 +1059,54 @@ func (m *QueryAllContactRequest) Size() (n int) {
 }
 
 func (m *QueryAllContactResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Contact) > 0 {
+		for _, e := range m.Contact {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListContactFilterRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.Phone)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.Email)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.Address)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListContactFilterResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1192,6 +1529,340 @@ func (m *QueryAllContactResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: QueryAllContactResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Contact", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Contact = append(m.Contact, Contact{})
+			if err := m.Contact[len(m.Contact)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListContactFilterRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListContactFilterRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListContactFilterRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Phone", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Phone = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Email = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Address = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListContactFilterResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListContactFilterResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListContactFilterResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

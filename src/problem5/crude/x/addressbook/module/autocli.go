@@ -28,6 +28,13 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a contact by id",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
+				{
+					RpcMethod:      "ListContactFilter",
+					Use:            "list-contact-filter [name] [phone] [email] [address]",
+					Short:          "List contact with filter",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "name"}, {ProtoField: "phone"}, {ProtoField: "email"}, {ProtoField: "address"}},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

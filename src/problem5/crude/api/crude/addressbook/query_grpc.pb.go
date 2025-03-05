@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName     = "/crude.addressbook.Query/Params"
-	Query_Contact_FullMethodName    = "/crude.addressbook.Query/Contact"
-	Query_ContactAll_FullMethodName = "/crude.addressbook.Query/ContactAll"
+	Query_Params_FullMethodName            = "/crude.addressbook.Query/Params"
+	Query_Contact_FullMethodName           = "/crude.addressbook.Query/Contact"
+	Query_ContactAll_FullMethodName        = "/crude.addressbook.Query/ContactAll"
+	Query_ListContactFilter_FullMethodName = "/crude.addressbook.Query/ListContactFilter"
 )
 
 // QueryClient is the client API for Query service.
@@ -33,6 +34,8 @@ type QueryClient interface {
 	// Queries a list of Contact items.
 	Contact(ctx context.Context, in *QueryGetContactRequest, opts ...grpc.CallOption) (*QueryGetContactResponse, error)
 	ContactAll(ctx context.Context, in *QueryAllContactRequest, opts ...grpc.CallOption) (*QueryAllContactResponse, error)
+	// Queries a list of ListContactFilter items.
+	ListContactFilter(ctx context.Context, in *QueryListContactFilterRequest, opts ...grpc.CallOption) (*QueryListContactFilterResponse, error)
 }
 
 type queryClient struct {
@@ -70,6 +73,15 @@ func (c *queryClient) ContactAll(ctx context.Context, in *QueryAllContactRequest
 	return out, nil
 }
 
+func (c *queryClient) ListContactFilter(ctx context.Context, in *QueryListContactFilterRequest, opts ...grpc.CallOption) (*QueryListContactFilterResponse, error) {
+	out := new(QueryListContactFilterResponse)
+	err := c.cc.Invoke(ctx, Query_ListContactFilter_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -79,6 +91,8 @@ type QueryServer interface {
 	// Queries a list of Contact items.
 	Contact(context.Context, *QueryGetContactRequest) (*QueryGetContactResponse, error)
 	ContactAll(context.Context, *QueryAllContactRequest) (*QueryAllContactResponse, error)
+	// Queries a list of ListContactFilter items.
+	ListContactFilter(context.Context, *QueryListContactFilterRequest) (*QueryListContactFilterResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -94,6 +108,9 @@ func (UnimplementedQueryServer) Contact(context.Context, *QueryGetContactRequest
 }
 func (UnimplementedQueryServer) ContactAll(context.Context, *QueryAllContactRequest) (*QueryAllContactResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ContactAll not implemented")
+}
+func (UnimplementedQueryServer) ListContactFilter(context.Context, *QueryListContactFilterRequest) (*QueryListContactFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListContactFilter not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -162,6 +179,24 @@ func _Query_ContactAll_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ListContactFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListContactFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListContactFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ListContactFilter_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListContactFilter(ctx, req.(*QueryListContactFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,6 +215,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ContactAll",
 			Handler:    _Query_ContactAll_Handler,
+		},
+		{
+			MethodName: "ListContactFilter",
+			Handler:    _Query_ListContactFilter_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
