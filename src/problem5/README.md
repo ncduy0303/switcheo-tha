@@ -73,3 +73,9 @@ To filter contacts by name, phone number, email, or address, execute the followi
 # cruded query addressbook list-contact-filter [name] [phone] [email] [address]
 cruded query addressbook list-contact-filter "Johnson" "" "" ""
 ```
+
+## Consensus-Breaking Change
+
+A consensus breaking change is one that alters the state of the blockchain in a way that is incompatible with the previous state. This change can result in nodes disagreeing on the state of the blockchain, causing inconsistencies and potential issues with transaction validation and block creation. It requires all nodes to update to the new state to maintain consensus.
+
+In the `problem5-consensus-breaking` branch, I added a new field `Affiliation` to the `Contact` structure in the `addressbook` module. This field is not compatible with the previous state format, which only contained `Id`, `Name`, `Phone`, `Email`, and `Address`. As a result, nodes running the previous version of the blockchain will not be able to correctly interpret or interact with contacts that have the new structure. This change would break the consensus because the old chain would not recognize the new field.
