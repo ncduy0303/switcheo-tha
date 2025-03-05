@@ -13,13 +13,14 @@ import (
 )
 
 var (
-	md_Contact         protoreflect.MessageDescriptor
-	fd_Contact_id      protoreflect.FieldDescriptor
-	fd_Contact_name    protoreflect.FieldDescriptor
-	fd_Contact_phone   protoreflect.FieldDescriptor
-	fd_Contact_email   protoreflect.FieldDescriptor
-	fd_Contact_address protoreflect.FieldDescriptor
-	fd_Contact_creator protoreflect.FieldDescriptor
+	md_Contact             protoreflect.MessageDescriptor
+	fd_Contact_id          protoreflect.FieldDescriptor
+	fd_Contact_name        protoreflect.FieldDescriptor
+	fd_Contact_phone       protoreflect.FieldDescriptor
+	fd_Contact_email       protoreflect.FieldDescriptor
+	fd_Contact_address     protoreflect.FieldDescriptor
+	fd_Contact_creator     protoreflect.FieldDescriptor
+	fd_Contact_affiliation protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -31,6 +32,7 @@ func init() {
 	fd_Contact_email = md_Contact.Fields().ByName("email")
 	fd_Contact_address = md_Contact.Fields().ByName("address")
 	fd_Contact_creator = md_Contact.Fields().ByName("creator")
+	fd_Contact_affiliation = md_Contact.Fields().ByName("affiliation")
 }
 
 var _ protoreflect.Message = (*fastReflection_Contact)(nil)
@@ -134,6 +136,12 @@ func (x *fastReflection_Contact) Range(f func(protoreflect.FieldDescriptor, prot
 			return
 		}
 	}
+	if x.Affiliation != "" {
+		value := protoreflect.ValueOfString(x.Affiliation)
+		if !f(fd_Contact_affiliation, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -161,6 +169,8 @@ func (x *fastReflection_Contact) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.Address != ""
 	case "crude.addressbook.Contact.creator":
 		return x.Creator != ""
+	case "crude.addressbook.Contact.affiliation":
+		return x.Affiliation != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: crude.addressbook.Contact"))
@@ -189,6 +199,8 @@ func (x *fastReflection_Contact) Clear(fd protoreflect.FieldDescriptor) {
 		x.Address = ""
 	case "crude.addressbook.Contact.creator":
 		x.Creator = ""
+	case "crude.addressbook.Contact.affiliation":
+		x.Affiliation = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: crude.addressbook.Contact"))
@@ -223,6 +235,9 @@ func (x *fastReflection_Contact) Get(descriptor protoreflect.FieldDescriptor) pr
 	case "crude.addressbook.Contact.creator":
 		value := x.Creator
 		return protoreflect.ValueOfString(value)
+	case "crude.addressbook.Contact.affiliation":
+		value := x.Affiliation
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: crude.addressbook.Contact"))
@@ -255,6 +270,8 @@ func (x *fastReflection_Contact) Set(fd protoreflect.FieldDescriptor, value prot
 		x.Address = value.Interface().(string)
 	case "crude.addressbook.Contact.creator":
 		x.Creator = value.Interface().(string)
+	case "crude.addressbook.Contact.affiliation":
+		x.Affiliation = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: crude.addressbook.Contact"))
@@ -287,6 +304,8 @@ func (x *fastReflection_Contact) Mutable(fd protoreflect.FieldDescriptor) protor
 		panic(fmt.Errorf("field address of message crude.addressbook.Contact is not mutable"))
 	case "crude.addressbook.Contact.creator":
 		panic(fmt.Errorf("field creator of message crude.addressbook.Contact is not mutable"))
+	case "crude.addressbook.Contact.affiliation":
+		panic(fmt.Errorf("field affiliation of message crude.addressbook.Contact is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: crude.addressbook.Contact"))
@@ -311,6 +330,8 @@ func (x *fastReflection_Contact) NewField(fd protoreflect.FieldDescriptor) proto
 	case "crude.addressbook.Contact.address":
 		return protoreflect.ValueOfString("")
 	case "crude.addressbook.Contact.creator":
+		return protoreflect.ValueOfString("")
+	case "crude.addressbook.Contact.affiliation":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -404,6 +425,10 @@ func (x *fastReflection_Contact) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		l = len(x.Affiliation)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -432,6 +457,13 @@ func (x *fastReflection_Contact) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Affiliation) > 0 {
+			i -= len(x.Affiliation)
+			copy(dAtA[i:], x.Affiliation)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Affiliation)))
+			i--
+			dAtA[i] = 0x3a
 		}
 		if len(x.Creator) > 0 {
 			i -= len(x.Creator)
@@ -701,6 +733,38 @@ func (x *fastReflection_Contact) ProtoMethods() *protoiface.Methods {
 				}
 				x.Creator = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
+			case 7:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Affiliation", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Affiliation = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -754,12 +818,13 @@ type Contact struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id      uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name    string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Phone   string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,omitempty"`
-	Email   string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	Address string `protobuf:"bytes,5,opt,name=address,proto3" json:"address,omitempty"`
-	Creator string `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
+	Id          uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Phone       string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,omitempty"`
+	Email       string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Address     string `protobuf:"bytes,5,opt,name=address,proto3" json:"address,omitempty"`
+	Creator     string `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
+	Affiliation string `protobuf:"bytes,7,opt,name=affiliation,proto3" json:"affiliation,omitempty"`
 }
 
 func (x *Contact) Reset() {
@@ -824,13 +889,20 @@ func (x *Contact) GetCreator() string {
 	return ""
 }
 
+func (x *Contact) GetAffiliation() string {
+	if x != nil {
+		return x.Affiliation
+	}
+	return ""
+}
+
 var File_crude_addressbook_contact_proto protoreflect.FileDescriptor
 
 var file_crude_addressbook_contact_proto_rawDesc = []byte{
 	0x0a, 0x1f, 0x63, 0x72, 0x75, 0x64, 0x65, 0x2f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62,
 	0x6f, 0x6f, 0x6b, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x12, 0x11, 0x63, 0x72, 0x75, 0x64, 0x65, 0x2e, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
-	0x62, 0x6f, 0x6f, 0x6b, 0x22, 0x8d, 0x01, 0x0a, 0x07, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74,
+	0x62, 0x6f, 0x6f, 0x6b, 0x22, 0xaf, 0x01, 0x0a, 0x07, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74,
 	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64,
 	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
 	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x18, 0x03, 0x20,
@@ -839,18 +911,20 @@ var file_crude_addressbook_contact_proto_rawDesc = []byte{
 	0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72,
 	0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65,
-	0x61, 0x74, 0x6f, 0x72, 0x42, 0xa7, 0x01, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e, 0x63, 0x72, 0x75,
-	0x64, 0x65, 0x2e, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0x42, 0x0c,
-	0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1b,
-	0x63, 0x72, 0x75, 0x64, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x72, 0x75, 0x64, 0x65, 0x2f,
-	0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0xa2, 0x02, 0x03, 0x43, 0x41,
-	0x58, 0xaa, 0x02, 0x11, 0x43, 0x72, 0x75, 0x64, 0x65, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
-	0x73, 0x62, 0x6f, 0x6f, 0x6b, 0xca, 0x02, 0x11, 0x43, 0x72, 0x75, 0x64, 0x65, 0x5c, 0x41, 0x64,
-	0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0xe2, 0x02, 0x1d, 0x43, 0x72, 0x75, 0x64,
-	0x65, 0x5c, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0x5c, 0x47, 0x50,
-	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x12, 0x43, 0x72, 0x75, 0x64,
-	0x65, 0x3a, 0x3a, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x74, 0x6f, 0x72, 0x12, 0x20, 0x0a, 0x0b, 0x61, 0x66, 0x66, 0x69, 0x6c, 0x69, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x66, 0x66, 0x69, 0x6c,
+	0x69, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xa7, 0x01, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e, 0x63,
+	0x72, 0x75, 0x64, 0x65, 0x2e, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b,
+	0x42, 0x0c, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
+	0x5a, 0x1b, 0x63, 0x72, 0x75, 0x64, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x72, 0x75, 0x64,
+	0x65, 0x2f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0xa2, 0x02, 0x03,
+	0x43, 0x41, 0x58, 0xaa, 0x02, 0x11, 0x43, 0x72, 0x75, 0x64, 0x65, 0x2e, 0x41, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0xca, 0x02, 0x11, 0x43, 0x72, 0x75, 0x64, 0x65, 0x5c,
+	0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0xe2, 0x02, 0x1d, 0x43, 0x72,
+	0x75, 0x64, 0x65, 0x5c, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0x5c,
+	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x12, 0x43, 0x72,
+	0x75, 0x64, 0x65, 0x3a, 0x3a, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

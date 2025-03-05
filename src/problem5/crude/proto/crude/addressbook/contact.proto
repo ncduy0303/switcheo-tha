@@ -10,4 +10,5 @@ message Contact {
   string email = 4; 
   string address = 5; 
   string creator = 6;
+  string affiliation = 7;
 }
