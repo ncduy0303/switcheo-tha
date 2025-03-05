@@ -1,28 +1,51 @@
 version: 1
 validation: sovereign
-accounts: 
-- name: alice
-  coins:
-  - 20000token
-  - 200000000stake
-- name: bob
-  coins:
-  - 10000token
-  - 100000000stake
+accounts:
+  - name: alice
+    coins:
+      - 20000token
+      - 200000000stake
+  - name: bob
+    coins:
+      - 10000token
+      - 100000000stake
 client:
   openapi:
     path: docs/static/openapi.yml
 faucet:
   name: bob
   coins:
-  - 5token
-  - 100000stake
+    - 5token
+    - 100000stake
 validators:
-- name: alice
-  bonded: 100000000stake
-- name: validator1
-  bonded: 100000000stake
-- name: validator2
-  bonded: 200000000stake
-- name: validator3
-  bonded: 300000000stake
+  - name: alice
+    bonded: 100000000stake
+  - name: validator1
+    bonded: 100000000stake
+  - name: validator2
+    bonded: 200000000stake
+  - name: validator3
+    bonded: 300000000stake
+genesis:
+  app_state:
+    addressbook:
+      contactList:
+        - id: "0"
+          name: "Alice Smith"
+          phone: "123-456-7890"
+          email: "alice@example.com"
+          address: "123 Main St"
+          creator: "alice"
+        - id: "1"
+          name: "Bob Johnson"
+          phone: "987-654-3210"
+          email: "bob@example.com"
+          address: "456 Elm St"
+          creator: "bob"
+        - id: "2"
+          name: "Charlie Johnson"
+          phone: "555-123-4567"
+          email: "charlie@gmail.com"
+          address: "789 Oak St"
+          creator: "bob"
+      contactCount: 3
