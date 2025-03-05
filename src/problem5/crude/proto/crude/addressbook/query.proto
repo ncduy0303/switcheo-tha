@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package crude.addressbook;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "crude/addressbook/params.proto";
+import "crude/addressbook/contact.proto";
+
+option go_package = "crude/x/addressbook/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/crude/addressbook/params";
+  
+  }
+  
+  // Queries a list of Contact items.
+  rpc Contact    (QueryGetContactRequest) returns (QueryGetContactResponse) {
+    option (google.api.http).get = "/crude/addressbook/contact/{id}";
+  
+  }
+  rpc ContactAll (QueryAllContactRequest) returns (QueryAllContactResponse) {
+    option (google.api.http).get = "/crude/addressbook/contact";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetContactRequest {
+  uint64 id = 1;
+}
+
+message QueryGetContactResponse {
+  Contact Contact = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllContactRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllContactResponse {
+  repeated Contact                                Contact    = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
